@@ -1,11 +1,5 @@
 <html>
-
-<head>
-	<title>Blogbuster</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-</head>
-
+<?php require './head.php';?>
 <body>
 	<div class="container">
 	<h1>CREAR POST</h1>
@@ -34,18 +28,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$cuerpo = $_POST['cuerpo'];
 	$date = date("Y-m-d");
 
-	require './mysql.php';
+	if(!(empty($titulo)||empty($cuerpo))){
+		require './mysql.php';
 
-	$sql = "INSERT INTO post(titulo, cuerpo, fecha)
-		VALUES ('$titulo', '$cuerpo', '$date')";
+		$sql = "INSERT INTO post(titulo, cuerpo, fecha)
+			VALUES ('$titulo', '$cuerpo', '$date')";
 
-	if ($conn->query($sql) === TRUE) {
-		echo "New record created successfully";
-	} else {
+		if ($conn->query($sql) === TRUE) {
+			echo "<div class='container w-50 alert alert-success' role='alert'>
+  			Registro Creado Correctamente
+				</div>";
+		}else {
 		echo "Error: " . $sql . "<br>" . $conn->error;
-	}
-
+		}
+		
+	}else{
+		echo "<div class='container w-50 alert alert-danger' role='alert'>
+					Rellene todos los campos	
+				</div>";
+		}
+	
 	$conn->close();
 }
-
 ?>

@@ -1,24 +1,20 @@
 <html>
-
-<head>
-	<title>Blogbuster</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-</head>
-
+<?php require './head.php';?>
 <body>
-<h1>Blogbuster</h1>
 
 <?php
 
 require './mysql.php';
 
-echo "<table class='table'>
+echo "<div class='container'><h1>Blogbuster</h1> <table class='table table-light'>
+
   <thead>
     <tr>	
       <th scope='col'>Id</th>
       <th scope='col'>Titulo</th>
       <th scope='col'>Cuerpo</th>
       <th scope='col'>Fecha</th>
+      <th scope='col'></th>
     </tr>
   </thead>
 	<tbody>";
@@ -30,6 +26,11 @@ echo "<table class='table'>
       <td>".$row['titulo']."</td>
       <td>".$row['cuerpo']."</td>
       <td>".$row['fecha']."</td>
+			<td>
+			<a href='./view.php?id=".$row['id']."'><i class='fas fa-eye'></i></a>
+			<a href='./view.php?id=".$row['id']."><i class='fas fa-pencil'></i></a>
+			<a href='./view.php?id=".$row['id']."><i class='fas fa-trash'></i></a>
+			</td>
     </tr>";
   }
   echo "</tbody></table>";
@@ -37,6 +38,7 @@ $conn->close();
 ?>
 
 <a href="./create.php"><button type="button" class="btn btn-primary">create</button></a>
+</div>
 </body>
 
 </html>
