@@ -28,8 +28,8 @@ echo "<div class='container'><h1>Blogbuster</h1> <table class='table table-light
       <td>".$row['fecha']."</td>
 			<td>
 			<a href='./view.php?id=".$row['id']."'><i class='fas fa-eye'></i></a>
-			<a href='./view.php?id=".$row['id']."'><i class='fas fa-pencil'></i></a>
-			<a href='./view.php?id=".$row['id']."'><i class='fas fa-trash'></i></a>
+			<a href='./update.php?id=".$row['id']."'><i class='fas fa-pencil'></i></a>
+			<a href='./delete.php?id=".$row['id']."'><i class='fas fa-trash'></i></a>
 			</td>
     </tr>";
   }
